@@ -16,10 +16,4 @@ if __name__ == '__main__':
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
 print_hi('Roy donders. De push doet het!')
 
-
-#Lukas typ dit......
-#extra toevoeging
-#nog een toevoeging
-
-
 print("hello world")

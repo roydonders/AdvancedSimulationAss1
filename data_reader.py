@@ -2,6 +2,7 @@ import pandas as pd
 
 class DataReader:
     def __init__(self, file_path):
+        self.df_roads_tidy = None
         self.lab_path = file_path
 
     def read_data(self):
@@ -36,6 +37,6 @@ class DataReader:
         # This line can be enabeled to drop missing values, see the section on 'Missing value issue' to see for which roads this would be usefull
         # df_roads_tidy = df_roads_tidy.dropna()
 
-        df_roads_tidy = df_roads_tidy.reset_index(drop=True)
+        self.df_roads_tidy = df_roads_tidy.reset_index(drop=True)
 
         print("hello world")

@@ -13,7 +13,7 @@ class DataReader:
 
 
     def read_roads(self):
-        # Method for reading data
+        # Method for reading road data
         import_roads = pd.read_table(self.lab_path + '\infrastructure\_roads.tsv', low_memory=False)
 
         # Make a copy of the imported dataframe to bypass importing each time you want your original dataframe (due to a mistake for example)
@@ -47,4 +47,5 @@ class DataReader:
         self.df_roads_tidy = df_roads_tidy.reset_index(drop=True)
 
     def read_bridges(self):
+        import_bridges = pd.read_excel(self.lab_path + '\infrastructure\BMMS_overview.xlsx', low_memory=False)
         print("hello world")

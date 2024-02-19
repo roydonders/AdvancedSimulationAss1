@@ -17,6 +17,7 @@ def main():
 
     #Import roads.tsv dataframe
     reader = DataReader(lab_path)
+    reader.read_data()
 
     # This function takes an integer as input and finds the n-th road in the datafile
     # it returns the subsetted dataframe related to that road

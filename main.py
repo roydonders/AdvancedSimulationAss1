@@ -73,3 +73,6 @@ ax.scatter(x,y, s=2)
 plt.show()
 
 #test
+
+
+#extra toevoeging voor de push, kan straks weg

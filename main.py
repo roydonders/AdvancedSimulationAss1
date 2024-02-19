@@ -68,15 +68,15 @@ def main():
     x = find_road_df(n)['Lon']
 
     # x and y are then plotted and a lineoverlay is used to connect the dots
-    ax.scatter(x, y, s=2)
+
     plt.show()
     fig, ax = plt.subplots(figsize=(8,8), dpi=100)
+    ax.scatter(x, y, s=2)
     ax.plot(x, y,linestyle='-', color='black', linewidth=1, alpha=0.2)
 
 
 if __name__ == "__main__":
     main()
 #test
-
 
 #extra toevoeging voor de push, kan straks weg

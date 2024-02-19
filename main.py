@@ -19,9 +19,13 @@ def main():
     reader = DataReader(lab_path)
     reader.read_data()
 
+    # Collect results of read data:
+    df_roads_tidy = reader.df_roads_tidy
+
     # This function takes an integer as input and finds the n-th road in the datafile
     # it returns the subsetted dataframe related to that road
-    df_roads_tidy = reader.df_roads_tidy
+
+
     def find_road_df(n, df=df_roads_tidy):
         road_specified = df['Road'].unique()[n]
 

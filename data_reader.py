@@ -1,12 +1,19 @@
 import pandas as pd
 
+
 class DataReader:
     def __init__(self, file_path):
+        # The cleaned dataframe is stored here
         self.df_roads_tidy = None
         self.lab_path = file_path
 
     def read_data(self):
-        #Method for reading data
+        self.read_roads()
+        self.read_bridges()
+
+
+    def read_roads(self):
+        # Method for reading data
         import_roads = pd.read_table(self.lab_path + '\infrastructure\_roads.tsv', low_memory=False)
 
         # Make a copy of the imported dataframe to bypass importing each time you want your original dataframe (due to a mistake for example)
@@ -39,4 +46,5 @@ class DataReader:
 
         self.df_roads_tidy = df_roads_tidy.reset_index(drop=True)
 
+    def read_bridges(self):
         print("hello world")

@@ -69,10 +69,10 @@ def main():
 
     # x and y are then plotted and a lineoverlay is used to connect the dots
 
-    plt.show()
     fig, ax = plt.subplots(figsize=(8,8), dpi=100)
     ax.scatter(x, y, s=2)
     ax.plot(x, y,linestyle='-', color='black', linewidth=1, alpha=0.2)
+    plt.show()
 
 
 if __name__ == "__main__":

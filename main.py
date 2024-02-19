@@ -58,14 +58,17 @@ def find_road_df(n, df=df_roads_tidy):
 
     return road_specified_df
 
-def plot_one_road(n,df=find_road_df )
+# Here the function is used to define x and y
+# Change n to view a different road, you can go as high as 884
 
-    y = find_road_df(n)['Lat']
-    x = find_road_df(n)['Lon']
+n=1
+y = find_road_df(n)['Lat']
+x = find_road_df(n)['Lon']
 
-    # x and y are then plotted and a lineoverlay is used to connect the dots
+# x and y are then plotted and a lineoverlay is used to connect the dots
 
-    fig, ax = plt.subplots(figsize=(8,8), dpi=100)
-    ax.plot(x, y,linestyle='-', color='black', linewidth=1, alpha=0.2)
-    ax.scatter(x,y, s=2)
-    plt.show()
+fig, ax = plt.subplots(figsize=(8,8), dpi=100)
+ax.plot(x, y,linestyle='-', color='black', linewidth=1, alpha=0.2)
+ax.scatter(x,y, s=2)
+plt.show()
+

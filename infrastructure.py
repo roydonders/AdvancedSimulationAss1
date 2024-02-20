@@ -8,12 +8,17 @@ class Infrastructure:
 class Road(Infrastructure):
     def __init__(self, df):
         super().__init__()
-        self.lon = df['lon']
-        self.lat = df['lat']
-        self.lrp = df['lrp']
-        self.lon2 = df['lon2']
-        self.lat2 = df['lat2']
-        self.lrp2 = df['lrp2']
+        self.road = df['Road']
+        self.lon = df['Lon']
+        self.lat = df['Lat']
+        self.lrp = df['LRP']
+
+    def dataframe_to_road_objects(df):
+        roads = []
+        for _, row in df.iterrows():
+            road_obj = Road(row)
+            roads.append(road_obj)
+        return roads
 
 class Bridge(Infrastructure):
     def __init__(self, df):

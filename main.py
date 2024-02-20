@@ -25,6 +25,7 @@ def main():
     df_roads_tidy = reader.df_roads_tidy
     df_bridges_tidy = reader.df_bridges_tidy
 
+    roads = reader.roads_list
     bridges = reader.bridges_list
 
     # This function takes an integer as input and finds the n-th road in the datafile

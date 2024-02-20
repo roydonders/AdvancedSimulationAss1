@@ -11,6 +11,7 @@ class DataReader:
         # The cleaned dataframe is stored in these variables. Initialized to None
         self.df_roads_tidy = None
         self.df_bridges_tidy = None
+        self.roads_list = []
         self.bridges_list = []
         self.lab_path = file_path
 
@@ -52,6 +53,8 @@ class DataReader:
         # df_roads_tidy = df_roads_tidy.dropna()
 
         self.df_roads_tidy = df_roads_tidy.reset_index(drop=True)
+        # Deze methode duurt heel lang!
+        #self.roads_list = Road.dataframe_to_road_objects(df_roads_tidy)
 
     def read_bridges(self):
         import_bridges = pd.read_excel(self.lab_path + '\infrastructure\BMMS_overview.xlsx')

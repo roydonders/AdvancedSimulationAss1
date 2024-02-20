@@ -6,17 +6,18 @@ import openpyxl as opl
 from data_reader import DataReader
 
 def main():
+    # Fill in your own Filepath
     #Filepath Lukas
     #lab_path = r'C:\Users\lukas\Downloads\Asim Lab1\WBSIM_Lab1_2024\WBSIM_Lab1_2024'
 
     #Filepath Bram
 
-    # Fill in your own Filepath
+
     #Filepath Timon
 
     lab_path = r'C:\Users\TOT\PycharmProjects\AdvancedSimulationAss1\data\WBSIM_Lab1_2024\WBSIM_Lab1_2024'
 
-    #Import roads.tsv dataframe
+    #Import all data
     reader = DataReader(lab_path)
     reader.read_data()
 
@@ -24,10 +25,10 @@ def main():
     df_roads_tidy = reader.df_roads_tidy
     df_bridges_tidy = reader.df_bridges_tidy
 
+    bridges = reader.bridges_list
+
     # This function takes an integer as input and finds the n-th road in the datafile
     # it returns the subsetted dataframe related to that road
-
-
     def find_road_df(n, df=df_roads_tidy):
         road_specified = df['Road'].unique()[n]
 
@@ -52,6 +53,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-#test
-
-#extra toevoeging voor de push, kan straks weg

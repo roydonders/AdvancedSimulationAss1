@@ -3,13 +3,15 @@ from typing import Union, Dict, Any
 import pandas as pd
 from pandas import DataFrame
 
+from infrastructure import Infrastructure, Road, Bridge
+
 
 class DataReader:
     def __init__(self, file_path):
         # The cleaned dataframe is stored in these variables. Initialized to None
         self.df_roads_tidy = None
         self.df_bridges_tidy = None
-
+        self.bridges_list = []
         self.lab_path = file_path
 
     def read_data(self):
@@ -55,3 +57,6 @@ class DataReader:
         import_bridges = pd.read_excel(self.lab_path + '\infrastructure\BMMS_overview.xlsx')
         self.df_bridges_tidy = import_bridges
         print(import_bridges)
+        print(import_bridges.columns)
+        print(import_bridges['road'])
+        self.bridges_list = Bridge.dataframe_to_bridge_objects(import_bridges)

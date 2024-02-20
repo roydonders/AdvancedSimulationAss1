@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import openpyxl as opl
 
 from data_reader import DataReader
 
@@ -13,7 +14,7 @@ def main():
     # Fill in your own Filepath
     #Filepath Timon
 
-    lab_path = r'C:\Users\TOT\OneDrive - Stichting EBO de Passie\Documenten\Studie\Advanced Simulation\WBSIM_Lab1_2024\WBSIM_Lab1_2024'
+    lab_path = r'C:\Users\TOT\PycharmProjects\AdvancedSimulationAss1\data\WBSIM_Lab1_2024\WBSIM_Lab1_2024'
 
     #Import roads.tsv dataframe
     reader = DataReader(lab_path)
@@ -21,6 +22,7 @@ def main():
 
     # Collect results of read data:
     df_roads_tidy = reader.df_roads_tidy
+    df_bridges_tidy = reader.df_bridges_tidy
 
     # This function takes an integer as input and finds the n-th road in the datafile
     # it returns the subsetted dataframe related to that road

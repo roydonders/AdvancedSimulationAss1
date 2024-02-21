@@ -34,8 +34,11 @@ def main():
 
     #bridges_outside_country = dict(filter(filter_not_in_dict, bridgesinbangladesh.items())).keys()
 
+    # for output
+    finalbridges = bridgesinbangladesh
     output_path = lab_path
-    exporter = DataExporter(output_path)
+    exporter = DataExporter(output_path, finalbridges)
+    exporter.export()
 
     # This function takes an integer as input and finds the n-th road in the datafile
     # it returns the subsetted dataframe related to that road

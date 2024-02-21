@@ -7,7 +7,9 @@ class DataExporter:
         self.output_path = output_path
         self.finalbridges = finalbridges
         # df bridges is a dataframe
-        self.dfbridges = None
+        # cheap way to get the column names, just get the first one of the list
+        cols = finalbridges[0].df.index.tolist()
+        self.dfbridges = DataFrame(columns=cols)
         self.prepareExport()
 
     def prepareExport(self):
@@ -18,12 +20,13 @@ class DataExporter:
         # per bridge in the final bridge list, just append all the df rows per object.
         # initialize with first row
         # Extracting the 'df' property from each bridge object and storing them in a list
-        #rows = [bridge.df.T for bridge in self.finalbridges]
+        rows = [bridge.df.T for bridge in self.finalbridges]
 
         # Concatenating all the DataFrames in the list into one big DataFrame
-        #big_df = pd.concat(rows, ignore_index=True)
+        for row in rows:
+            self.dfbridges = self.dfbridges.append(row, ignore_index=True)
         # is ignore index ok?
-        #self.dfbridges = big_df
+        # methode werkt niet, geklooi met series/df appenden.
 
 
     def export(self):

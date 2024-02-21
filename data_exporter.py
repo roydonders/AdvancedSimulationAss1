@@ -16,11 +16,10 @@ class DataExporter:
         self.prepareExportSimple()
 
     def prepareExportSimple(self):
-        pass
         # per bridge in the final bridge list, just append all the df rows per object.
         # initialize with first row
         # Extracting the 'df' property from each bridge object and storing them in a list
-        rows = [bridge.df.T for bridge in self.finalbridges]
+        rows = [bridge.df for bridge in self.finalbridges]
 
         # Concatenating all the DataFrames in the list into one big DataFrame
         for row in rows:

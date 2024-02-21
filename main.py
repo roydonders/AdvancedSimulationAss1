@@ -37,8 +37,8 @@ def main():
     # for output
     finalbridges = bridgesinbangladesh
     output_path = lab_path
-    #exporter = DataExporter(output_path, finalbridges)
-    #exporter.export()
+    exporter = DataExporter(output_path, finalbridges)
+    exporter.export()
 
     # This function takes an integer as input and finds the n-th road in the datafile
     # it returns the subsetted dataframe related to that road

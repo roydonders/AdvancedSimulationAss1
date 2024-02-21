@@ -6,19 +6,25 @@ class DataExporter:
     def __init__(self, output_path, finalbridges):
         self.output_path = output_path
         self.finalbridges = finalbridges
-        self.dfbridges = DataFrame()
+        # df bridges is a dataframe
+        self.dfbridges = None
         self.prepareExport()
 
     def prepareExport(self):
         self.prepareExportSimple()
 
     def prepareExportSimple(self):
+        pass
         # per bridge in the final bridge list, just append all the df rows per object.
         # initialize with first row
-        firstrow = self.finalbridges[0].df
-        self.dfbridges = firstrow
-        for bridge in self.finalbridges:
-            self.dfbridges.append(bridge.df)
+        # Extracting the 'df' property from each bridge object and storing them in a list
+        #rows = [bridge.df.T for bridge in self.finalbridges]
+
+        # Concatenating all the DataFrames in the list into one big DataFrame
+        #big_df = pd.concat(rows, ignore_index=True)
+        # is ignore index ok?
+        #self.dfbridges = big_df
+
 
     def export(self):
         pass

@@ -1,5 +1,6 @@
 import pandas as pd
 from pandas import DataFrame
+from bangladesh import Bangladesh
 
 class Infrastructure:
     def __init__(self):
@@ -51,3 +52,20 @@ class Bridge(Infrastructure):
             bridge_obj = Bridge(row)
             bridges.append(bridge_obj)
         return bridges
+
+    def getLocation(self):
+        return (self.lat,self.lon)
+
+    def inBangladeshSimple(self):
+        location = self.getLocation()
+        lat = location[0]
+        lon = location[1]
+        withinlon = Bangladesh.latWithinCountry(lat)
+        withinlat = Bangladesh.lonWithinCountry(lon)
+        withinbangladesh = withinlat and withinlat
+        return withinbangladesh
+
+
+
+
+

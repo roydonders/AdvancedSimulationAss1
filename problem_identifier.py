@@ -1,7 +1,7 @@
 import pandas as pd
 from pandas import DataFrame
 
-from infrastructure import Infrastructure
+from infrastructure import Infrastructure, Bridge
 
 class DataQualityProblem:
     def __init__(self, infrastructure, issue):
@@ -20,9 +20,15 @@ class IncorrectDecimalProblem(DataQualityProblem):
     def __init__(self, inf):
         super().__init__(inf, "Incorrect decimal")
 
+
+
 class ProblemIdentifier:
     def __init__(self):
         # checks for problems
         # If lat/long not in bangladesh - check if this or this is the case
         pass
+
+    def isInsideBangladesh(self, b):
+        pass
+
 

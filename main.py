@@ -14,7 +14,6 @@ def main():
 
 
     #Filepath Timon
-
     lab_path = r'C:\Users\TOT\PycharmProjects\AdvancedSimulationAss1\data\WBSIM_Lab1_2024\WBSIM_Lab1_2024'
 
     #Import all data
@@ -27,6 +26,11 @@ def main():
 
     roads = reader.roads_list
     bridges = reader.bridges_list
+
+    #skere 2 regels code
+    #bridgesinbangladesh = bridges_outside_country(bridges)
+
+    #bridges_outside_country = dict(filter(filter_not_in_dict, bridgesinbangladesh.items())).keys()
 
     # This function takes an integer as input and finds the n-th road in the datafile
     # it returns the subsetted dataframe related to that road
@@ -45,11 +49,34 @@ def main():
     x = find_road_df(n)['Lon']
 
     # x and y are then plotted and a lineoverlay is used to connect the dots
-
     fig, ax = plt.subplots(figsize=(8,8), dpi=100)
     ax.scatter(x, y, s=2)
     ax.plot(x, y,linestyle='-', color='black', linewidth=1, alpha=0.2)
     plt.show()
+
+# Provides a dict with value if the bridge is inside or outside bangladesh
+def bridges_in_country(bridges):
+    bridges_in_country = {}
+    for bridge in bridges:
+        is_within_country = bridge.inBangladeshSimple()
+        bridges_in_country[bridge] = is_within_country
+    return bridges_in_country
+
+def bridges_outside_country(bridges):
+    bridges_outside_country = []
+    for bridge in bridges:
+        is_in_country = bridge.inBangladeshSimple()
+        if(not is_in_country):
+            bridges_outside_country.append(bridge)
+
+    return bridges_outside_country
+
+def filter_not_in_dict(pair):
+    key, value = pair
+    if value == False:
+        return True  # keep pair in the filtered dictionary
+    else:
+        return False  # filter pair out of the dictionary
 
 
 if __name__ == "__main__":

@@ -16,11 +16,14 @@ class DataReader:
         self.lab_path = file_path
 
     def read_data(self):
+        print("Reading Data")
         self.read_roads()
         self.read_bridges()
+        print("Done Reading Data")
 
 
     def read_roads(self):
+        print("Reading in Roads Data...")
         # Method for reading road data
         import_roads = pd.read_table(self.lab_path + '\infrastructure\_roads.tsv', low_memory=False)
 
@@ -57,9 +60,7 @@ class DataReader:
         #self.roads_list = Road.dataframe_to_road_objects(df_roads_tidy)
 
     def read_bridges(self):
+        print("Reading in Bridges Data...")
         import_bridges = pd.read_excel(self.lab_path + '\infrastructure\BMMS_overview.xlsx')
         self.df_bridges_tidy = import_bridges
-        print(import_bridges)
-        print(import_bridges.columns)
-        print(import_bridges['road'])
         self.bridges_list = Bridge.dataframe_to_bridge_objects(import_bridges)

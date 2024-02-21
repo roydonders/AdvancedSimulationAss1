@@ -7,6 +7,7 @@ from data_reader import DataReader
 from data_exporter import DataExporter
 
 def main():
+    print("Start Data Cleaning!")
     # Fill in your own Filepath
     #Filepath Lukas
     #lab_path = r'C:\Users\lukas\Downloads\Asim Lab1\WBSIM_Lab1_2024\WBSIM_Lab1_2024'
@@ -28,6 +29,7 @@ def main():
     roads = reader.roads_list
     bridges = reader.bridges_list
 
+    print("Identifying Problems in the Data")
     #skere 2 regels code
     bridgesinbangladesh = bridges_inside_country(bridges)
     #bridgesnotinbangladesh = bridges_outside_country(bridges)
@@ -35,10 +37,11 @@ def main():
     #bridges_outside_country = dict(filter(filter_not_in_dict, bridgesinbangladesh.items())).keys()
 
     # for output
+    print("Cleaning the Data using Heuristics")
     finalbridges = bridgesinbangladesh
     output_path = lab_path
-    #exporter = DataExporter(output_path, finalbridges)
-    #exporter.export()
+    exporter = DataExporter(output_path, finalbridges)
+    exporter.export()
 
     # This function takes an integer as input and finds the n-th road in the datafile
     # it returns the subsetted dataframe related to that road
@@ -61,6 +64,7 @@ def main():
     ax.scatter(x, y, s=2)
     ax.plot(x, y,linestyle='-', color='black', linewidth=1, alpha=0.2)
     plt.show()
+    print("Done Cleaning!")
 
 # Provides a dict(!) with value if the bridge is inside or outside bangladesh
 def bridges_in_country(bridges):

@@ -7,9 +7,11 @@ class DataExporter:
         self.output_path = output_path
         self.finalbridges = finalbridges
         # df bridges is a dataframe
-        # cheap way to get the column names, just get the first one of the list
-        cols = finalbridges[0].df.index.tolist()
         self.dfbridges = DataFrame()
+
+        # filenames
+        self.bridges_file_name = 'CLEANBMMS_overview.xlsx'
+
         self.prepareExport()
 
     def prepareExport(self):
@@ -33,4 +35,13 @@ class DataExporter:
 
     def export(self):
         print("Exporting - WIP")
+        self.exportRoads()
+        self.exportBridges()
+
+    def exportRoads(self):
         pass
+
+    def exportBridges(self):
+        f = self.bridges_file_name
+        self.dfbridges.to_excel(f, index=False)
+        print("Cleaned Bridges succesfully written to Excel")

@@ -22,29 +22,32 @@ class Road(Infrastructure):
         return roads
 
 class Bridge(Infrastructure):
-    def __init__(self, df):
+    def __init__(self, s):
         super().__init__()
+        # Initialize all properties
+        self.km = s['km']
+        self.type = s['type']
+        self.LRPName = s['LRPName']
+        self.name = s['name']
+        self.length = s['length']
+        self.condition = s['condition']
+        self.structureNr = s['structureNr']
+        self.roadName = s['roadName']
+        self.chainage = s['chainage']
+        self.width = s['width']
+        self.constructionYear = s['constructionYear']
+        self.spans = s['spans']
+        self.zone = s['zone']
+        self.circle = s['circle']
+        self.division = s['division']
+        self.sub_division = s['sub-division']  # Changed to sub_division because variable names cannot contain hyphens
+        self.lat = s['lat']
+        self.lon = s['lon']
+        self.EstimatedLoc = s['EstimatedLoc']
+        # Lastly keep a copy of the dataframe by modifying the Series to a dataframe.
+        # This is done for easier modification later.
+        df = s.to_frame().T
         self.df = df
-        self.km = self.df['km']
-        self.type = self.df['type']
-        self.LRPName = self.df['LRPName']
-        self.name = self.df['name']
-        self.length = self.df['length']
-        self.condition = self.df['condition']
-        self.structureNr = self.df['structureNr']
-        self.roadName = self.df['roadName']
-        self.chainage = self.df['chainage']
-        self.width = self.df['width']
-        self.constructionYear = self.df['constructionYear']
-        self.spans = self.df['spans']
-        self.zone = self.df['zone']
-        self.circle = self.df['circle']
-        self.division = self.df['division']
-        self.sub_division = self.df[
-            'sub-division']  # Changed to sub_division because variable names cannot contain hyphens
-        self.lat = self.df['lat']
-        self.lon = self.df['lon']
-        self.EstimatedLoc = self.df['EstimatedLoc']
 
     def dataframe_to_bridge_objects(df):
         bridges = []

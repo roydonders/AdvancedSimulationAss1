@@ -28,7 +28,7 @@ def main():
     bridges = reader.bridges_list
 
     #skere 2 regels code
-    #bridgesinbangladesh = bridges_outside_country(bridges)
+    bridgesoutbangladesh = bridges_outside_country(bridges)
 
     #bridges_outside_country = dict(filter(filter_not_in_dict, bridgesinbangladesh.items())).keys()
 

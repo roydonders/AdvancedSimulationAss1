@@ -24,7 +24,7 @@ class Road(Infrastructure):
 class Bridge(Infrastructure):
     def __init__(self, df):
         super().__init__()
-        self.df = df
+        self.df = df.to_frame()
         self.km = self.df['km']
         self.type = self.df['type']
         self.LRPName = self.df['LRPName']

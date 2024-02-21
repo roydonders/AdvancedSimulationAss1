@@ -14,6 +14,9 @@ class DataExporter:
 
     def prepareExportSimple(self):
         # per bridge in the final bridge list, just append all the df rows per object.
+        # initialize with first row
+        firstrow = self.finalbridges[0].df
+        self.dfbridges = firstrow
         for bridge in self.finalbridges:
             self.dfbridges.append(bridge.df)
 

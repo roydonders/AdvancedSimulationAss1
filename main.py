@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import openpyxl as opl
 
 from data_reader import DataReader
+from data_exporter import DataExporter
 
 def main():
     # Fill in your own Filepath
@@ -28,9 +29,13 @@ def main():
     bridges = reader.bridges_list
 
     #skere 2 regels code
-    bridgesoutbangladesh = bridges_outside_country(bridges)
+    bridgesinbangladesh = bridges_inside_country(bridges)
+    #bridgesnotinbangladesh = bridges_outside_country(bridges)
 
     #bridges_outside_country = dict(filter(filter_not_in_dict, bridgesinbangladesh.items())).keys()
+
+    output_path = lab_path
+    exporter = DataExporter(output_path)
 
     # This function takes an integer as input and finds the n-th road in the datafile
     # it returns the subsetted dataframe related to that road
@@ -54,12 +59,21 @@ def main():
     ax.plot(x, y,linestyle='-', color='black', linewidth=1, alpha=0.2)
     plt.show()
 
-# Provides a dict with value if the bridge is inside or outside bangladesh
+# Provides a dict(!) with value if the bridge is inside or outside bangladesh
 def bridges_in_country(bridges):
     bridges_in_country = {}
     for bridge in bridges:
         is_within_country = bridge.inBangladeshSimple()
         bridges_in_country[bridge] = is_within_country
+    return bridges_in_country
+
+def bridges_inside_country(bridges):
+    bridges_in_country = []
+    for bridge in bridges:
+        is_in_country = bridge.inBangladeshSimple()
+        if(is_in_country):
+            bridges_in_country.append(bridge)
+
     return bridges_in_country
 
 def bridges_outside_country(bridges):

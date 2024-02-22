@@ -48,14 +48,15 @@ class ProblemIdentifier:
 
     def sort_bridges(self):
         # Probably a faster method exists
-        self.correctbridges = self.bridges_inside_country(self.origbridges)
-        self.problematicbridges = self.bridges_outside_country(self.origbridges)
+        self.correctbridges = self.bridges_inside_country()
+        self.problematicbridges = self.bridges_outside_country()
 
     def solve_prob_bridges(self):
         pass
 
 
-    def bridges_inside_country(bridges):
+    def bridges_inside_country(self):
+        bridges = self.origbridges
         bridges_in_country = []
         for bridge in bridges:
             is_in_country = bridge.inBangladeshPolygon()
@@ -64,7 +65,8 @@ class ProblemIdentifier:
 
         return bridges_in_country
 
-    def bridges_outside_country(bridges):
+    def bridges_outside_country(self):
+        bridges = self.origbridges
         bridges_outside_country = []
         for bridge in bridges:
             is_in_country = bridge.inBangladeshSimple()

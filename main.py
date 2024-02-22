@@ -31,16 +31,12 @@ def main():
     bridges = reader.bridges_list
 
     print("Identifying Problems in the Data")
-    #skere 2 regels code
-    bridgesinbangladesh = bridges_inside_country(bridges)
-
     pi = ProblemIdentifier(roads,bridges)
     finalroads, finalbridges = pi.solve()
 
 
     # for output
     print("Cleaning the Data using Heuristics")
-    finalbridges = bridgesinbangladesh
     output_path = lab_path
     exporter = DataExporter(output_path, finalbridges)
     exporter.export()

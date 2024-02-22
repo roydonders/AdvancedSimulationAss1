@@ -43,5 +43,7 @@ class DataExporter:
 
     def exportBridges(self):
         f = self.bridges_file_name
-        self.dfbridges.to_excel(f, index=False)
+        writer = pd.ExcelWriter(f)
+        self.dfbridges.to_excel(writer, sheet_name='BMMS_overview', index=False)
+        writer.close()
         print("Cleaned Bridges succesfully written to Excel")

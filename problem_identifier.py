@@ -2,6 +2,7 @@ import pandas as pd
 from pandas import DataFrame
 
 from infrastructure import Infrastructure, Bridge
+from bangladesh import Bangladesh
 
 class DataQualityProblem:
     def __init__(self, infrastructure, issue):
@@ -19,9 +20,6 @@ class LatLongSwitchedProblem(DataQualityProblem):
 class IncorrectDecimalProblem(DataQualityProblem):
     def __init__(self, inf):
         super().__init__(inf, "Incorrect decimal")
-
-
-
 
 
 class ProblemIdentifier:
@@ -74,6 +72,45 @@ class ProblemIdentifier:
                 bridges_outside_country.append(bridge)
 
         return bridges_outside_country
+
+    def check_and_fix(self, condition, fix):
+        # Only works for bridges atm
+        input_list = self.problematicbridges
+        fixable_elements = []
+        n = len(input_list)
+        # Iterate over the list backwards to avoid index shifting when popping elements
+        for i in range(n - 1, -1, -1):
+            current_item = input_list[i]
+            if condition(current_item):
+                fixable_elements.append(input_list.pop(i))
+
+        fix(fixable_elements)
+        self.problematicbridges = input_list
+
+    def fixableLatLong(self, bridge):
+        lat = bridge.lat
+        lon = bridge.lon
+        # Entered the other way around
+        latlongswapped = Bangladesh.polygonWithinCountry(lat,lon)
+        return latlongswapped
+
+    def fixBridgesLatLong(self, bridges):
+        for bridge in bridges:
+            self.fix_lat_long(bridge)
+            self.update_df_lat_long(bridge)
+            self.correctbridges.append(bridge)
+
+
+    def fix_lat_long(self, bridge):
+        lat = bridge.lat
+        lon = bridge.lon
+        bridge.lat = lon
+        bridge.lon = lat
+
+    def update_df_lat_long(self, bridge):
+        df = bridge.df
+        df['lon'] = bridge.lon
+        df['lat'] = bridge.lat
 
     # Provides a dict(!) with value if the bridge is inside or outside bangladesh
     #Unused methods

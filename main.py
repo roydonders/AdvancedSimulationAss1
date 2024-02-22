@@ -5,6 +5,7 @@ import openpyxl as opl
 
 from data_reader import DataReader
 from data_exporter import DataExporter
+from problem_identifier import ProblemIdentifier
 
 def main():
     print("Start Data Cleaning!")
@@ -22,7 +23,7 @@ def main():
     reader = DataReader(lab_path)
     reader.read_data()
 
-    # Collect results of read data:
+    #Collect results of read data:
     df_roads_tidy = reader.df_roads_tidy
     df_bridges_tidy = reader.df_bridges_tidy
 
@@ -32,9 +33,10 @@ def main():
     print("Identifying Problems in the Data")
     #skere 2 regels code
     bridgesinbangladesh = bridges_inside_country(bridges)
-    #bridgesnotinbangladesh = bridges_outside_country(bridges)
 
-    #bridges_outside_country = dict(filter(filter_not_in_dict, bridgesinbangladesh.items())).keys()
+    pi = ProblemIdentifier(roads,bridges)
+    finalroads, finalbridges = pi.solve()
+
 
     # for output
     print("Cleaning the Data using Heuristics")
@@ -66,38 +68,6 @@ def main():
     plt.show()
     print("Done Cleaning!")
 
-# Provides a dict(!) with value if the bridge is inside or outside bangladesh
-def bridges_in_country(bridges):
-    bridges_in_country = {}
-    for bridge in bridges:
-        is_within_country = bridge.inBangladeshSimple()
-        bridges_in_country[bridge] = is_within_country
-    return bridges_in_country
-
-def bridges_inside_country(bridges):
-    bridges_in_country = []
-    for bridge in bridges:
-        is_in_country = bridge.inBangladeshPolygon()
-        if(is_in_country):
-            bridges_in_country.append(bridge)
-
-    return bridges_in_country
-
-def bridges_outside_country(bridges):
-    bridges_outside_country = []
-    for bridge in bridges:
-        is_in_country = bridge.inBangladeshSimple()
-        if(not is_in_country):
-            bridges_outside_country.append(bridge)
-
-    return bridges_outside_country
-
-def filter_not_in_dict(pair):
-    key, value = pair
-    if value == False:
-        return True  # keep pair in the filtered dictionary
-    else:
-        return False  # filter pair out of the dictionary
 
 
 if __name__ == "__main__":

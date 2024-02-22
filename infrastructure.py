@@ -68,6 +68,12 @@ class Bridge(Infrastructure):
         withinbangladesh = withinlat and withinlat
         return withinbangladesh
 
+    def inBangladeshPolygon(self):
+        location = self.getLocation()
+        lat = location[0]
+        lon = location[1]
+        withinbangladesh = Bangladesh.polygonWithinCountry(lon,lat)
+        return withinbangladesh
 
 
 

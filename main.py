@@ -77,7 +77,7 @@ def bridges_in_country(bridges):
 def bridges_inside_country(bridges):
     bridges_in_country = []
     for bridge in bridges:
-        is_in_country = bridge.inBangladeshSimple()
+        is_in_country = bridge.inBangladeshPolygon()
         if(is_in_country):
             bridges_in_country.append(bridge)
 

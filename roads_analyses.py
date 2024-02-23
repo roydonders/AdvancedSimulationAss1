@@ -23,7 +23,13 @@ class RoadCleaner:
     @staticmethod
     def find_road_df(n, df_roads_tidy):
         """This function takes an integer as input and finds the n-th road in the datafile
-            it returns the subsetted dataframe related to that road"""
+            it returns the subsetted dataframe related to that road
+                # reshape the DataFrame into a tidy dataset
+                df_roads_tidy = pd.DataFrame({
+                'Road': df_roads['road'].repeat(len(df_roads.columns) // 3),
+                'LRP': df_roads['LRP'].values.reshape(-1),
+                'Lat': df_roads['Lat'].values.reshape(-1),
+                'Lon': df_roads['Lon'].values.reshape(-1) })"""
 
         road_specified = df_roads_tidy['Road'].unique()[n]
 

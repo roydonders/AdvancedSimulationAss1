@@ -55,8 +55,8 @@ class ProblemIdentifier:
     def solve_prob_bridges(self):
         # First try to see if we can fix bridges that have lat and long in wrong order
         self.check_and_fix(self.fixableLatLong, self.fixBridgesLatLong)
-        # Then see if we can approximate by chainage
-
+        # Then see if we can approximate by chainage for the NaN values
+        # Limitations: NOT IMPLEMENTED YET
 
 
 
@@ -99,8 +99,8 @@ class ProblemIdentifier:
         print(nfixable, "bridges fixed by applying method", fix.__name__)
 
     def fixableLatLong(self, bridge):
-        lat = bridge.lon
-        lon = bridge.lat
+        lat = bridge.lat
+        lon = bridge.lon
         # Entered the other way around
         latlongswapped = Bangladesh.polygonWithinCountry(lat,lon)
         return latlongswapped
@@ -123,8 +123,9 @@ class ProblemIdentifier:
         df['lon'] = bridge.lon
         df['lat'] = bridge.lat
 
-    # Provides a dict(!) with value if the bridge is inside or outside bangladesh
+
     #Unused methods
+    # Provides a dict(!) with value if the bridge is inside or outside bangladesh
     def bridges_in_country(bridges):
         bridges_in_country = {}
         for bridge in bridges:

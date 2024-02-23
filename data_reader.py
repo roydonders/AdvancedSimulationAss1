@@ -1,3 +1,4 @@
+import os
 from typing import Union, Dict, Any
 
 import pandas as pd
@@ -7,14 +8,31 @@ from infrastructure import Infrastructure, Road, Bridge
 
 
 class DataReader:
-    def __init__(self, file_path):
+    def __init__(self):
         # The cleaned dataframe is stored in these variables. Initialized to None
         self.df_roads_original = None
         self.df_roads_tidy = None
         self.df_bridges_tidy = None
         self.roads_list = []
         self.bridges_list = []
-        self.lab_path = file_path
+        self.data_path = self.getDataPath()
+
+    def getDataPath(self):
+        # Get the directory of the current script
+        script_dir = os.path.dirname(__file__)
+
+        # Define the relative path to the data folder
+        relative_path = 'data'
+
+        # Construct the absolute path by joining the script directory and the relative path
+        data_folder = os.path.abspath(os.path.join(script_dir, relative_path))
+
+        # Join subfolders
+        subfolder_assignment = 'WBSIM_Lab1_2024'
+        subfolder_infrastructure = 'infrastructure'
+
+        data_path = os.path.join(data_folder, subfolder_assignment, subfolder_infrastructure)
+        return data_path
 
     def read_data(self):
         print("Reading Data")
@@ -26,7 +44,7 @@ class DataReader:
     def read_roads(self):
         print("Reading in Roads Data...")
         # Method for reading road data
-        import_roads = pd.read_table(self.lab_path + '\infrastructure\_roads.tsv', low_memory=False)
+        import_roads = pd.read_table(self.data_path + '\_roads.tsv', low_memory=False)
 
         # Make a copy of the imported dataframe to bypass importing each time you want your original dataframe (due to a mistake for example)
         self.df_roads_original = import_roads
@@ -58,11 +76,12 @@ class DataReader:
         # df_roads_tidy = df_roads_tidy.dropna()
 
         self.df_roads_tidy = df_roads_tidy.reset_index(drop=True)
-        # Deze methode duurt heel lang!
+        # Possible to turn into road objects, however the following method takes very long O(n)
         #self.roads_list = Road.dataframe_to_road_objects(df_roads_tidy)
 
     def read_bridges(self):
         print("Reading in Bridges Data...")
-        import_bridges = pd.read_excel(self.lab_path + '\infrastructure\BMMS_overview.xlsx')
+        import_bridges = pd.read_excel(self.data_path + '\BMMS_overview.xlsx')
         self.df_bridges_tidy = import_bridges
         self.bridges_list = Bridge.dataframe_to_bridge_objects(import_bridges)
+

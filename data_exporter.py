@@ -4,6 +4,8 @@ from pandas import DataFrame
 
 class DataExporter:
     def __init__(self, output_path, finalbridges):
+        # Output path wordt nog niet in deze methode gebruikt, we exporteren het naar de hoofdfolder
+        # Dit is voor de duidelijkheid, om te voorkomen dat je verwarring krijgt tussen files in infrastructure.
         self.output_path = output_path
         self.finalbridges = finalbridges
         # df bridges is a dataframe

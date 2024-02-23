@@ -1,10 +1,6 @@
 from shapely.geometry import Point
 from shapely.geometry.polygon import Polygon
 class Bangladesh(object):
-    leftLonBound = 88
-    rightLonBound = 93
-    upperLatBound = 20.5
-    lowerLatBound = 27
 
     @staticmethod
     def lonWithinCountry(longitude):

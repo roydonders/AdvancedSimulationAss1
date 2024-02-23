@@ -9,6 +9,7 @@ from infrastructure import Infrastructure, Road, Bridge
 class DataReader:
     def __init__(self, file_path):
         # The cleaned dataframe is stored in these variables. Initialized to None
+        self.df_roads_original = None
         self.df_roads_tidy = None
         self.df_bridges_tidy = None
         self.roads_list = []
@@ -28,6 +29,7 @@ class DataReader:
         import_roads = pd.read_table(self.lab_path + '\infrastructure\_roads.tsv', low_memory=False)
 
         # Make a copy of the imported dataframe to bypass importing each time you want your original dataframe (due to a mistake for example)
+        self.df_roads_original = import_roads
         df_roads = import_roads
 
         columns = df_roads.columns

@@ -48,9 +48,16 @@ class ProblemIdentifier:
         # Probably a faster method exists
         self.correctbridges = self.bridges_inside_country()
         self.problematicbridges = self.bridges_outside_country()
+        # Output for debugging
+        ncorrect = len(self.correctbridges)
+        print(ncorrect, "bridges within country (by polygon approximation) - assumed to be correct")
 
     def solve_prob_bridges(self):
-        pass
+        # First try to see if we can fix bridges that have lat and long in wrong order
+        self.check_and_fix(self.fixableLatLong, self.fixBridgesLatLong)
+        # Then see if we can approximate by chainage
+
+
 
 
     def bridges_inside_country(self):
@@ -87,9 +94,13 @@ class ProblemIdentifier:
         fix(fixable_elements)
         self.problematicbridges = input_list
 
+        #output messages
+        nfixable = len(fixable_elements)
+        print(nfixable, "bridges fixed by applying method", fix.__name__)
+
     def fixableLatLong(self, bridge):
-        lat = bridge.lat
-        lon = bridge.lon
+        lat = bridge.lon
+        lon = bridge.lat
         # Entered the other way around
         latlongswapped = Bangladesh.polygonWithinCountry(lat,lon)
         return latlongswapped
